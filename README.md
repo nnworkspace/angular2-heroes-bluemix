@@ -6,7 +6,7 @@
 
 This project is extended from [Frederic Lavigne's bluemix-hello-angular2 project][bluemix_hello_angular2_github]. Many thanks to Mr. Lavigne!
 
-## Prerequisits
+## Prerequisites
 
 1. If you haven't gone through the official [_Angularjs 2 Quickstart_][angular2_quick_start] and the [_Tour of Heroes Tutorial_][tour_of_heroes], by all means do it. Install all the runtimes and additional libraries that is described in the Quickstart.
 
