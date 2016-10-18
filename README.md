@@ -1,27 +1,31 @@
+# _Tour of Heroes_ in IBM&reg; Bluemix&reg;
+
 Tour of Heroes, the official tutorial of Angular 2 teaches the quint essential aspects of AngularJS 2, such as data services, routing (application navigation), and HTTP. It is an ideal start point for anyone who would like to learn Angular 2, and the source code of the heroes application also serves as a good template for an initial setup of an Angular 2 application.  
 
-A while ago I went through this tutorial and got it deployed on IBM Bluemix. [The application is running like a charm](http://angular2-heros-pugilistical-curb.eu-gb.mybluemix.net/). This post is a tutorial about how to get your Angular 2 heroes up and running on Bluemix.   
+[A while ago I went through this tutorial and have it deployed on IBM Bluemix][app_url]. This post is a tutorial about how to get your Angular 2 heroes up and running on Bluemix. 
 
-Prerequisits: 
+This project is extended from [Frederic Lavigne's bluemix-hello-angular2 project][bluemix_hello_angular2_github]. Many thanks to Mr. Lavigne!
 
-1. If you haven't gone through the official Angularjs 2 Quickstart and the "Tour of Heroes" tutorial , by all means do it. Install all the runtimes and additional libraries that is described in the Quickstart. (add links here)
+## Prerequisits
 
-2. Install Git. Use Git Bash for running npm tasks even if you are using a windows box. 
+1. If you haven't gone through the official [_Angularjs 2 Quickstart_][angular2_quick_start] and the [_Tour of Heroes Tutorial_][tour_of_heroes], by all means do it. Install all the runtimes and additional libraries that is described in the Quickstart.
 
-3. Install [angular-cli](https://github.com/angular/angular-cli) for building deployables. 
+1. Install Git. Use Git Bash or any other Git shell for running npm tasks even if you are using a windows box. 
 
-```
-npm install -g angular-cli
-```
+1. Install [angular-cli][angular_cli] for building deployables. 
 
-4. Register a Bluemix account. It's free. 
+  ```
+  npm install -g angular-cli
+  ```
 
-5. Install [bluemix-cli](Url to bluemix cli) for connecting to bluemix.    
+1. [Sign up a Bluemix account][bluemix_signup_url], or use an existing one. 
 
-6. Install [cloudfoundry-cli](url to cloud foundry) for deployment of your applications.  
+1. Install [bluemix-cli][bluemix_cli] for connecting to bluemix.    
+
+1. Install [cloudfoundry-cli][cloud_foundry_url] for deployment of your applications.  
 
 
-# Heros on Bluemix
+## Project Local Build
 
 1. Clone the source code of the "Angular 2 Heroes on Bluemix" app to your local directory. Let's call it <path-to-your-heroes>. 
 
@@ -29,89 +33,71 @@ npm install -g angular-cli
   git clone https://github.com/nnworkspace/
   ```
 
-2. Cd into <path-to-your-heroes>
+1. Cd into your project directory.
 
-3. Fetch angular-cli tooling libraries that are needed for building the deployables. 
+1. Fetch angular-cli tooling libraries that are needed for building the deployables: 
   ```
   ng init
   ```
-  If you are asked any questions like "packages.json already exists, overwrite?", answer all those questions with no. I have already written and tested the configuration files, and these config files should not be overwritten by the angular-cli default values. The mere purpose of this step is fetching the building dependencies to your project directory. Without this step, the "ng build" in later step will fail.   
+  If you are asked any questions like "packages.json already exists, overwrite?", answer all those questions with no. I have already written and tested the configuration files, and these config files should not be overwritten by the angular-cli default values. The mere purpose of this step is fetching the building dependencies to your project directory. Without this step, the `ng build` in the script section of the `packages.json` will fail.   
 
-4. Install the project dependencies:
+1. Install the project dependencies:
 
    ```
    npm install
    ```
 
-1. Build the project
+1. Build the project:
 
   ```
   npm run dist
   ```
 
-  This task is defined in [package.json](package.json). It compiles the source code written in TypeScript into deployable JavaScript. Bluemix currently does not suppurt "transpiler" yet, we have to go this way for now. In addition it copies the bluemix [manifest.yml](manifest.yml) file to the **dist** directory together with the [Staticfile](Staticfile). Those two are needed to deploy the **dist** folder with the [Cloud Foundry static buildpack](https://github.com/cloudfoundry/staticfile-buildpack) making it possible to serve plain HTML, CSS, JavaScript files.
+  This task is defined in [`package.json`](package.json). It compiles the source code written in TypeScript into deployable JavaScript. In this example, we make bluemix serve plain HTML, CSS, JavaScript files. In addition it copies the bluemix [`manifest.yml`](manifest.yml) file to the **`dist`** directory together with the [Staticfile](Staticfile). Those two are needed to deploy the **`dist`** folder with the [Cloud Foundry static buildpack](https://github.com/cloudfoundry/staticfile-buildpack).
 
-
---------------------------------------------------------------------------------
-
-# Angular 2 in IBM Bluemix
-
-This project deploys a simple Angular 2 app in IBM Bluemix. The Angular 2 uses the [angular-cli](https://github.com/angular/angular-cli) to generate the application artifacts into the **dist** folder. Once generated, these artifacts are deployed to IBM Bluemix and served by the [Cloud Foundry static buildpack](https://github.com/cloudfoundry/staticfile-buildpack).
-
-## Running the app on Bluemix
-
-1. Create a Bluemix Account
-
-    [Sign up][bluemix_signup_url] for Bluemix, or use an existing account.
-
-2. Download and install the [Cloud-foundry CLI][cloud_foundry_url] tool
-
-3. Clone the app to your local environment from your terminal using the following command
+1. Run the project locally, to see whether everything works as described in the [_Tour of Heroes Tutorial_][tour_of_heroes]:
 
   ```
-  git clone https://github.com/l2fprod/bluemix-hello-angular2.git
+  ng serve
   ```
+  The test URL is [`http://localhost:4200/`](http://localhost:4200/).
 
-4. Cd into this newly created directory
 
-1. Install [angular-cli](https://github.com/angular/angular-cli)
 
-  ```
-  npm install -g angular-cli
-  ```
+## Heroes on Cloud a la Bluemix
 
-1. Install the project dependencies
-
-  ```
-  npm install
-  ```
-
-1. Build the project
-
-  ```
-  npm run dist
-  ```
-
-  This task defined in [package.json](package.json) compiles the Angular 2 app. In addition it copies the [manifest.yml](manifest.yml) file to the **dist** directory together with the [Staticfile](Staticfile). Those two are needed to deploy the **dist** folder with the [Cloud Foundry static buildpack](https://github.com/cloudfoundry/staticfile-buildpack) making it possible to serve plain HTML, CSS, JavaScript files.
-
-1. Change to the dist directory
+1. Cd into the dist directory after build and local test:
 
   ```
   cd dist
   ```
 
-1. Push the application to Bluemix
+1. Connect to IBM Bluemix:
+
+  ```
+  bluemix api https://api.eu-gb.bluemix.net
+  ```
+
+1. Login to Bluemix:
+
+  ```
+  bluemix login -u <your-user-account> -o <your-organization> -s <your-space>
+  ```
+  If you are using a federated ID, use the -sso option:
+  ```
+  bluemix login -u <your-user-account> -o "<your-organization>" -s "<your-space>" -sso
+  ```
+
+1. Up onto the cloud:
 
   ```
   cf push
   ```
+  It will create a new app named *angular2-heroes* with a random route. Watch for the route name in the `cf push` output.
 
-  It will create a new app named *bluemix-hello-angular2* with a random route. Watch for the route name in the ```cf push``` output.
-
-
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.15.
 
 ## Troubleshooting
+
 
 To troubleshoot your Bluemix app the main useful source of information is the logs. To see them, run:
 
@@ -119,10 +105,22 @@ To troubleshoot your Bluemix app the main useful source of information is the lo
   cf logs <application-name> --recent
   ```
 
----
 
-This project is a sample application created for the purpose of demonstrating the deployment of a Angular 2 app in IBM Bluemix.
+## Extended Reading
+
+Joe Deluca also made an Angluar 2 project [_petstore-client-angular2_][petstore_angular2_github] run on Bluemix. You may want to have a look. 
+
+
+
+----------------------------------
 The program is provided as-is with no warranties of any kind, express or implied.
 
-[bluemix_signup_url]: https://console.ng.bluemix.net/?cm_mmc=GitHubReadMe-_-BluemixSampleApp-_-Node-_-Workflow
+[app_url]: https://angular2-heroes-pseudoviscous-satisfactoriness.eu-gb.mybluemix.net
+[bluemix_hello_angular2_github]: https://github.com/l2fprod/bluemix-hello-angular2
+[angular2_quick_start]: https://angular.io/docs/ts/latest/quickstart.html
+[tour_of_heroes]: https://angular.io/docs/ts/latest/tutorial/
+[angular_cli]: https://github.com/angular/angular-cli
+[bluemix_signup_url]: https://console.ng.bluemix.net/registration/?Target=https%3A%2F%2Fconsole.ng.bluemix.net%2Flogin%3Fstate%3D%2Fhome%2Fonboard
+[bluemix_cli]: https://clis.ng.bluemix.net/ui/home.html
 [cloud_foundry_url]: https://github.com/cloudfoundry/cli
+[petstore_angular2_github]: https://github.com/joeydeluca/petstore-client-angular2
