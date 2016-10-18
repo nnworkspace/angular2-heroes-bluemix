@@ -30,7 +30,7 @@ This project is extended from [Frederic Lavigne's bluemix-hello-angular2 project
 1. Clone the source code of the "Angular 2 Heroes on Bluemix" app to your local directory. Let's call it <path-to-your-heroes>. 
 
   ```
-  git clone https://github.com/nnworkspace/
+  git clone https://github.com/nnworkspace/angular2-heroes-bluemix
   ```
 
 1. Cd into your project directory.
