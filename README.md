@@ -1,6 +1,6 @@
 # _Tour of Heroes_ in IBM&reg; Bluemix&reg;
 
-[_Tour of Heroes_, the official tutorial of Angular 2][tour_of_heroes] teaches the quint essential aspects of AngularJS 2, such as data services, routing (application navigation), and HTTP. It is an ideal start point for anyone who would like to learn Angular 2, and the source code of the heroes application also serves as a good template for an initial setup of an Angular 2 application.  
+[_Tour of Heroes_, the official tutorial of Angular 2][tour_of_heroes] teaches the quintessential aspects of AngularJS 2, such as data services, routing (application navigation), and HTTP. It is an ideal start point for anyone who would like to learn Angular 2, and the source code of the heroes application also serves as a good template for an initial setup of an Angular 2 application.  
 
 [A while ago I went through this tutorial and have it deployed on IBM Bluemix][app_url] (this link may be invalid after a few days, because I'm going to delete it from my bluemix account to free up resources). This post is a tutorial about how to get your Angular 2 heroes up and running on Bluemix. 
 
